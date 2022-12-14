@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import Testimonials from './Components/Testimonials';
-import Trial from './Components/Trial';
+import Main from './Components/Main';
 
 function App() {
   return (
     <>
-      <Testimonials/>
-      {/* <Trial/> */}
+      {/* <Testimonials/> */}
+      <Main/>
     </>
   );
 }

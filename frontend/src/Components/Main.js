@@ -1,4 +1,5 @@
 import React from "react";
+import Carousel from "framer-motion-carousel";
 import {
   Heading,
   Avatar,
@@ -12,8 +13,8 @@ import {
   chakra,
   useColorModeValue,
   SimpleGrid,
+  Card,
 } from "@chakra-ui/react";
-
 const testimonials = [
   {
     name: "Ann Maria",
@@ -75,13 +76,16 @@ const testimonials = [
   },
 ];
 
-export default function Testimonials() {
+export default function Main() {
   return (
     <Flex
       textAlign={"center"}
       justifyContent={"center"}
       direction={"column"}
-      width={"full"}
+      //   width={"full"}
+      height="100%"
+      width="100%"
+      minHeight="100vh"
       bg={useColorModeValue("gray.100", "gray.700")}
     >
       <chakra.h1
@@ -105,69 +109,76 @@ export default function Testimonials() {
         </chakra.strong>{" "}
         influencers use EEZY to manage their social media content!
       </chakra.h2>
-
-      <Center>
-        <Stack direction={["column", "row"]} spacing="24px">
-          <SimpleGrid
-            columns={{ base: 1, xl: 3, md: 2 }}
-            spacing={"20"}
-            mt={16}
-            mx={"auto"}
+      <br />
+      <br />
+      <Carousel justifyContent={"center"} draggable={false}>
+        {testimonials.map((cardInfo, index) => (
+          <Flex
+            height="100%"
+            width="100%"
+            minHeight="100vh"
+            flexDir="column"
+            p={10}
+            // bg="rgb(26,31,42)"
           >
-            {testimonials.map((cardInfo, index) => (
-              <Box
-                maxW={"270px"}
+            {/* <Box
+              maxW={"570px"}
+              w={"full"}
+              boxShadow={"2xl"}
+              // rounded={"md"}
+              // overflow={"hidden"}
+              bg={"#FFFFFF"}
+              textAlign={"center"}
+              justifyContent={"center"}
+              // draggable={true}
+            > */}
+              <Image
+                h={"120px"}
                 w={"full"}
-                boxShadow={"2xl"}
-                rounded={"md"}
-                overflow={"hidden"}
-                bg={"#FFFFFF"}
-              >
-                <Image
-                  h={"120px"}
-                  w={"full"}
-                  src={"./images/bg2.png"}
-                  objectFit={"cover"}
+                src={"./images/bg7.png"}
+                objectFit={"cover"}
+              />
+              <Flex justify={"center"} mt={-12}>
+                <Avatar
+                  size={"xl"}
+                  src={cardInfo.avatar}
+                  alt={"Author"}
+                  css={{
+                    border: "2px solid white",
+                  }}
                 />
-                <Flex justify={"center"} mt={-12}>
-                  <Avatar
-                    size={"xl"}
-                    src={cardInfo.avatar}
-                    alt={"Author"}
-                    css={{
-                      border: "2px solid white",
-                    }}
-                  />
-                </Flex>
+              </Flex>
 
-                <Box p={6}>
-                  <Stack spacing={0} align={"center"} mb={5}>
-                    <Text color={"gray.500"} align={"center"}>
-                      {cardInfo.content}
-                    </Text>
-                  </Stack>
+              <Box p={6}>
+                <Stack spacing={0} align={"center"} mb={5}>
+                  <Text as="i" color={"gray.500"} align={"center"}>
+                    {cardInfo.content}
+                  </Text>
+                </Stack>
 
-                  <Stack direction={"column"} justify={"center"} spacing={3}>
-                    <Stack spacing={0} align={"center"}>
-                      <Heading
-                        fontSize={"2xl"}
-                        fontWeight={500}
-                        fontFamily={"body"}
-                      >
-                        {cardInfo.name}
-                      </Heading>
-                    </Stack>
-                    <Stack spacing={0} align={"center"}>
-                      <Text color={"gray.500"}>{cardInfo.role}</Text>
-                    </Stack>
+                <Stack direction={"column"} justify={"center"} spacing={3}>
+                  <Stack spacing={0} align={"center"}>
+                    <Heading
+                      fontSize={"2xl"}
+                      fontWeight={500}
+                      fontFamily={"body"}
+                    >
+                      {cardInfo.name}
+                    </Heading>
                   </Stack>
-                </Box>
+                  <Stack spacing={0} align={"center"}>
+                    <Text color={"gray.500"}>{cardInfo.role}</Text>
+                  </Stack>
+                </Stack>
               </Box>
-            ))}
-          </SimpleGrid>
-        </Stack>
-      </Center>
-      {/* </Box> */}
+              {/* <br />
+            <br />
+            <br />
+            <br /> */}
+            {/* </Box> */}
+          </Flex>
+        ))}
+      </Carousel>
     </Flex>
   );
 }
